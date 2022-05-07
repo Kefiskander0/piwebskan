@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,10 +37,20 @@ class InscriptionController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $file=$user->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $user->setImage($fileName);
+
+            try {
+                $file->move(
+                    $this->getParameter('images_directory'),
+                    $fileName
+                );
+            }catch (FileException $e){
+
+            }
 
             $user->setPassword(openssl_encrypt($user->getPassword(), "AES-128-ECB", null)) ;
-
-            
 
             $userRepository->add($user);
 

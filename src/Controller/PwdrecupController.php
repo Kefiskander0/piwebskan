@@ -39,8 +39,6 @@ class PwdrecupController extends AbstractController
         $us->setPassword( openssl_decrypt($us->getPassword(), "AES-128-ECB", null));
         }
 
-
-
         $message=(new \Swift_Message('Récupérez votre mot de passe'));
         $message->setFrom("skander.kefi@esprit.tn");
         $message->setTo($mailaddress);

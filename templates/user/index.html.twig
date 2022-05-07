@@ -21,6 +21,7 @@
     <table class="table" >
         <thead>
             <tr>
+                <th></th>
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Adresse</th>
@@ -36,6 +37,7 @@
         <tbody>
         {% for user in users %}
             <tr>
+                <td><img src="{{ asset('uploads/images/754a8b704091f9c49d13afe88447eb55.jpeg' )}}" alt="" style="width: 80px;height: 80px"></td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.adresse }}</td>

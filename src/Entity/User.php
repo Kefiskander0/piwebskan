@@ -89,6 +89,14 @@ use Symfony\Component\Validator\Constraints as Assert;
     private $unbloc;
 
 
+     /**
+      * @ORM\Column(type="string", length=255)
+      * @Assert\File(mimeTypes={"image/jpeg"})
+      */
+     private $image;
+
+
+
 
 
      public function getId(): ?int
@@ -249,4 +257,19 @@ use Symfony\Component\Validator\Constraints as Assert;
      {
          $this->captchaCode = $captchaCode;
      }
+
+
+     public function getImage()
+     {
+         return $this->image;
+     }
+
+     public function setImage($image)
+     {
+         $this->image = $image;
+         return $this;
+     }
+
+
+
  }
